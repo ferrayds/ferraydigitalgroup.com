@@ -23,6 +23,9 @@ const form = ref<FormData>({
 
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
+const error = ref('')
+
+const FORMSPREE_URL = 'https://formspree.io/f/mdalyrwe'
 
 const services = [
   { value: '', label: 'Sélectionnez un service' },
@@ -36,26 +39,52 @@ const services = [
 ]
 
 const submitForm = async () => {
+  if (!form.value.name || !form.value.email || !form.value.message) {
+    error.value = 'Veuillez remplir tous les champs obligatoires'
+    return
+  }
+
   isSubmitting.value = true
-  
-  const mailtoLink = `mailto:hello@ferraydigitalgroup.com?subject=Contact depuis le site - ${form.value.name}&body=Nom: ${encodeURIComponent(form.value.name)}%0AEmail: ${encodeURIComponent(form.value.email)}%0AEntreprise: ${encodeURIComponent(form.value.company)}%0ATéléphone: ${encodeURIComponent(form.value.phone)}%0AService: ${encodeURIComponent(form.value.service)}%0A%0AMessage:%0A${encodeURIComponent(form.value.message)}`
-  
-  window.location.href = mailtoLink
-  
-  isSubmitting.value = false
-  isSubmitted.value = true
-  
-  setTimeout(() => {
-    isSubmitted.value = false
-    form.value = {
-      name: '',
-      email: '',
-      company: '',
-      phone: '',
-      service: '',
-      message: '',
+  error.value = ''
+
+  try {
+    const response = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name: form.value.name,
+        email: form.value.email,
+        company: form.value.company,
+        phone: form.value.phone,
+        service: form.value.service,
+        message: form.value.message
+      })
+    })
+
+    if (response.ok) {
+      isSubmitted.value = true
+      form.value = {
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        service: '',
+        message: '',
+      }
+      setTimeout(() => {
+        isSubmitted.value = false
+      }, 5000)
+    } else {
+      error.value = 'Une erreur est survenue. Veuillez réessayer.'
     }
-  }, 3000)
+  } catch (e) {
+    error.value = 'Une erreur est survenue. Veuillez réessayer.'
+  } finally {
+    isSubmitting.value = false
+  }
 }
 
 const contactInfo = [
@@ -88,7 +117,7 @@ const contactInfo = [
       <div class="absolute inset-0 opacity-20">
         <div class="absolute top-20 left-10 w-72 h-72 bg-primary-600 rounded-full blur-3xl"></div>
       </div>
-      
+
       <div class="container-custom relative z-10">
         <div class="max-w-3xl mx-auto text-center">
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -110,10 +139,10 @@ const contactInfo = [
             Parlons de votre projet
           </h2>
           <p class="text-gray-600 mb-8">
-            Remplissez le formulaire et notre équipe vous contactera dans les 24 heures. 
+            Remplissez le formulaire et notre équipe vous contactera dans les 24 heures.
             Nous sommes disponibles pour discuter de vos besoins et vous accompagner dans votre transformation digitale.
           </p>
-          
+
           <div class="space-y-6 mb-8">
             <div
               v-for="info in contactInfo"
@@ -177,8 +206,11 @@ const contactInfo = [
               Envoyer un autre message
             </AppButton>
           </div>
-          
+
           <form v-else @submit.prevent="submitForm" class="space-y-6">
+            <div v-if="error" class="p-4 bg-red-50 border border-red-200 text-red-600 rounded-lg">
+              {{ error }}
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -205,7 +237,7 @@ const contactInfo = [
                 />
               </div>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -230,7 +262,7 @@ const contactInfo = [
                 />
               </div>
             </div>
-            
+
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">
                 Service souhaité
@@ -241,7 +273,7 @@ const contactInfo = [
                 </option>
               </select>
             </div>
-            
+
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">
                 Message *
@@ -254,7 +286,7 @@ const contactInfo = [
                 placeholder="Décrivez votre projet..."
               ></textarea>
             </div>
-            
+
             <AppButton
               type="submit"
               variant="primary"
@@ -271,13 +303,13 @@ const contactInfo = [
 
     <!-- Map -->
     <section class="h-96">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6184.861532138569!2d2.319045!3d6.404362!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024a965e5b22219%3A0x2ec9e99248ddff32!2sFerray%20Digital%20Solutions!5e1!3m2!1sfr!2sbj!4v1772031475443!5m2!1sfr!2sbj" 
-        width="100%" 
-        height="100%" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy" 
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6184.861532138569!2d2.319045!3d6.404362!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024a965e5b22219%3A0x2ec9e99248ddff32!2sFerray%20Digital%20Solutions!5e1!3m2!1sfr!2sbj!4v1772031475443!5m2!1sfr!2sbj"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </section>
