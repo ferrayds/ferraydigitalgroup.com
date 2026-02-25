@@ -25,7 +25,7 @@ const stats = [
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center bg-dark-900 overflow-hidden">
+    <section class="relative py-32 bg-dark-900 overflow-hidden">
       <!-- Background -->
       <div class="absolute inset-0 bg-dark-gradient"></div>
       <div class="absolute inset-0 opacity-30">
@@ -47,24 +47,24 @@ const stats = [
 
       <!-- App Mockups -->
       <div class="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block w-1/2 h-full">
-        <img 
-          src="https://ferraydigitalsolutions.com/images/mockup/full/tassiva-mobile.png" 
-          alt="Tassiva App" 
+        <img
+          src="https://ferraydigitalsolutions.com/images/mockup/full/tassiva-mobile.png"
+          alt="Tassiva App"
           class="absolute right-20 top-1/4 w-48 md:w-64 rounded-2xl shadow-2xl transform rotate-6"
         />
-        <img 
-          src="https://ferraydigitalsolutions.com/images/mockup/full/afrikflow-mobile.png" 
-          alt="Afrikflow App" 
+        <img
+          src="https://ferraydigitalsolutions.com/images/mockup/full/afrikflow-mobile.png"
+          alt="Afrikflow App"
           class="absolute right-60 top-1/3 w-48 md:w-64 rounded-2xl shadow-2xl transform -rotate-3"
         />
-        <img 
-          src="https://ferraydigitalsolutions.com/images/mockup/full/afrikflow.png" 
-          alt="Afrikflow Web" 
+        <img
+          src="https://ferraydigitalsolutions.com/images/mockup/full/afrikflow.png"
+          alt="Afrikflow Web"
           class="absolute right-0 top-1/2 w-64 md:w-80 rounded-2xl shadow-2xl"
         />
       </div>
 
-      <div class="container-custom relative z-10 pt-24 pb-16">
+      <div class="container-custom relative z-10">
         <div class="max-w-4xl">
           <div
             :class="[
@@ -126,7 +126,7 @@ const stats = [
               to="/portfolio"
               variant="secondary"
               size="lg"
-              class="!border-white !text-white hover:!bg-white/10"
+              class="!border-white !text-white hover:!bg-white/20 hover:!scale-105"
             >
               Voir nos réalisations
             </AppButton>
@@ -255,7 +255,7 @@ const stats = [
     <!-- Why Choose Us -->
     <AppSection dark>
       <div class="text-center mb-12">
-        <h2 class="section-title text-white">Pourquoi nous choisir</h2>
+        <h2 class="section-title text-white" style="color: white">Pourquoi nous choisir</h2>
         <p class="section-subtitle mx-auto text-gray-300">
           Nous nous engageons à deliver des résultats exceptionnels
         </p>
@@ -321,18 +321,20 @@ const stats = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div v-for="project in projects.slice(0, 3)" :key="project.id" class="group cursor-pointer">
-          <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-4">
-            <img
-              :src="project.image"
-              :alt="project.title"
-              class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-            />
-            <div
-              class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-            >
-              <AppButton to="/portfolio" variant="primary" size="sm"> Voir le projet </AppButton>
+          <a :href="project.link" target="_blank" class="block">
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-4">
+              <img
+                :src="project.image"
+                :alt="project.title"
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+              />
+              <div
+                class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <AppButton :href="project.link" target="_blank" variant="primary" size="sm"> Voir le projet </AppButton>
+              </div>
             </div>
-          </div>
+          </a>
           <div class="px-2">
             <span class="text-xs font-medium text-primary-600 uppercase tracking-wider">
               {{ project.category }}

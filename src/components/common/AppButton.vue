@@ -9,6 +9,7 @@ interface Props {
   type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
   loading?: boolean
+  target?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -31,19 +32,19 @@ const handleClick = (event: MouseEvent) => {
 
 const classes = computed(() => {
   const base = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
-  
+
   const variants = {
     primary: 'bg-blue-500 text-white hover:bg-blue-600 hover:scale-105',
     secondary: 'border-2 border-blue-500 text-blue-500 hover:bg-blue-50',
     ghost: 'text-gray-300 hover:bg-white/10',
   }
-  
+
   const sizes = {
     sm: 'px-4 py-2 text-sm',
     md: 'px-6 py-3 text-base',
     lg: 'px-8 py-4 text-lg',
   }
-  
+
   return [base, variants[props.variant], sizes[props.size]]
 })
 </script>
@@ -54,8 +55,10 @@ const classes = computed(() => {
     :to="to"
     :href="href"
     :type="!to && !href ? type : undefined"
+    :target="target"
     :class="classes"
     :disabled="disabled || loading"
+    style="cursor: pointer;"
     @click="handleClick"
   >
     <svg

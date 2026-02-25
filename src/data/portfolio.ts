@@ -16,7 +16,7 @@ export const projects: Project[] = [
     title: 'Tassiva',
     description: "Première application au Benin d'achat de produits frais venant des producteurs nationaux.",
     category: 'Mobile',
-    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&h=600&fit=crop',
+    image: 'https://ferraydigitalsolutions.com/images/mockup/full/tassiva.png',
     client: 'Tassiva',
     year: '2024',
     technologies: ['React Native', 'Node.js', 'MongoDB'],

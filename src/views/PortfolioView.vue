@@ -22,7 +22,7 @@ const filteredProjects = computed(() => {
       <div class="absolute inset-0 opacity-20">
         <div class="absolute top-20 right-10 w-72 h-72 bg-primary-600 rounded-full blur-3xl"></div>
       </div>
-      
+
       <div class="container-custom relative z-10">
         <div class="max-w-3xl mx-auto text-center">
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -59,9 +59,9 @@ const filteredProjects = computed(() => {
     <!-- Projects Grid -->
     <AppSection padding="none">
       <div class="container-custom pb-16">
-        <TransitionGroup 
-          name="projects" 
-          tag="div" 
+        <TransitionGroup
+          name="projects"
+          tag="div"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <div
@@ -69,25 +69,27 @@ const filteredProjects = computed(() => {
             :key="project.id"
             class="group cursor-pointer"
           >
-            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-4">
-              <img
-                :src="project.image"
-                :alt="project.title"
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-dark-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <AppButton to="/contact" variant="primary" size="sm">
-                  Découvrir le projet
-                </AppButton>
+            <a :href="project.link" target="_blank" class="block">
+              <div class="relative overflow-hidden rounded-2xl aspect-[4/3] mb-4">
+                <img
+                  :src="project.image"
+                  :alt="project.title"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-dark-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <AppButton :href="project.link" target="_blank" variant="primary" size="sm">
+                    Découvrir le projet
+                  </AppButton>
+                </div>
+                <div class="absolute top-4 left-4">
+                  <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-dark-900">
+                    {{ project.category }}
+                  </span>
+                </div>
               </div>
-              <div class="absolute top-4 left-4">
-                <span class="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-dark-900">
-                  {{ project.category }}
-                </span>
-              </div>
-            </div>
-            
+            </a>
+
             <div class="px-2">
               <div class="flex items-center justify-between mb-2">
                 <span class="text-sm text-gray-500">{{ project.client }}</span>
