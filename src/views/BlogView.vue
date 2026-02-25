@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { useHead } from '@vueuse/head'
+
 useHead({
-  title: 'Blog | Ferray Digital',
+  title: 'Blog | Ferray Digital Group',
 })
 </script>
 
