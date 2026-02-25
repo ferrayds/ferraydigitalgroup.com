@@ -220,11 +220,11 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, var(--color-primary-600), var(--color-primary-400));
+  background-image: linear-gradient(to right, #60a5fa, #93c5fd);
 }
 
 .bg-gradient-primary {
-  background-image: linear-gradient(to right, var(--color-primary-600), var(--color-primary-400));
+  background-image: linear-gradient(to right, #60a5fa, #93c5fd);
 }
 
 .bg-dark-gradient {

@@ -57,11 +57,11 @@ const timeline = [
       <div class="absolute inset-0 opacity-20">
         <div class="absolute bottom-20 left-10 w-72 h-72 bg-primary-600 rounded-full blur-3xl"></div>
       </div>
-      
+
       <div class="container-custom relative z-10">
         <div class="max-w-3xl mx-auto text-center">
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
-            À propos de <span class="text-gradient bg-gradient-to-r from-primary-400 to-primary-600">Ferray Digital</span>
+            À propos de <span class="text-gradient bg-gradient-to-r from-primary-400 to-primary-600">Ferray Digital Group</span>
           </h1>
           <p class="text-xl text-gray-300">
             Une équipe passionnée au service de votre transformation digitale
@@ -78,12 +78,12 @@ const timeline = [
             Notre mission : simplifier le digital pour les entreprises
           </h2>
           <p class="text-gray-600 mb-6 leading-relaxed">
-            Fondée en 2021, Ferray Digital Group est née d\'une vision simple : rendre la technologie 
-            accessible et bénéfique pour toutes les entreprises. Nous croyons que la transformation 
+            Fondée en 2021, Ferray Digital Group est née d\'une vision simple : rendre la technologie
+            accessible et bénéfique pour toutes les entreprises. Nous croyons que la transformation
             digitale ne devrait pas être un luxe réservé aux grandes corporations.
           </p>
           <p class="text-gray-600 mb-8 leading-relaxed">
-            Aujourd\'hui, nous accompagnons plus de 50 entreprises dans leur mutation digitale, 
+            Aujourd\'hui, nous accompagnons plus de 50 entreprises dans leur mutation digitale,
             en leur fournissant des solutions sur mesure, innovantes et performantes.
           </p>
           <AppButton to="/contact" variant="primary">
@@ -92,7 +92,7 @@ const timeline = [
         </div>
         <div class="relative">
           <div class="aspect-square rounded-2xl overflow-hidden">
-            <img 
+            <img
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=800&fit=crop"
               alt="Notre équipe"
               class="w-full h-full object-cover"
@@ -114,7 +114,7 @@ const timeline = [
           Les principes qui guident chacune de nos actions
         </p>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div
           v-for="value in values"
@@ -140,11 +140,11 @@ const timeline = [
           Les étapes clés de notre développement
         </p>
       </div>
-      
+
       <div class="max-w-3xl mx-auto">
         <div class="relative">
           <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-          
+
           <div
             v-for="(item, index) in timeline"
             :key="item.year"

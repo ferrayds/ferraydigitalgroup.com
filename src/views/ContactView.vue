@@ -38,40 +38,43 @@ const services = [
 const submitForm = async () => {
   isSubmitting.value = true
   
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1500))
+  const mailtoLink = `mailto:hello@ferraydigitalgroup.com?subject=Contact depuis le site - ${form.value.name}&body=Nom: ${encodeURIComponent(form.value.name)}%0AEmail: ${encodeURIComponent(form.value.email)}%0AEntreprise: ${encodeURIComponent(form.value.company)}%0ATéléphone: ${encodeURIComponent(form.value.phone)}%0AService: ${encodeURIComponent(form.value.service)}%0A%0AMessage:%0A${encodeURIComponent(form.value.message)}`
+  
+  window.location.href = mailtoLink
   
   isSubmitting.value = false
   isSubmitted.value = true
   
-  // Reset form
-  form.value = {
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    service: '',
-    message: '',
-  }
+  setTimeout(() => {
+    isSubmitted.value = false
+    form.value = {
+      name: '',
+      email: '',
+      company: '',
+      phone: '',
+      service: '',
+      message: '',
+    }
+  }, 3000)
 }
 
 const contactInfo = [
   {
     icon: 'mail',
     title: 'Email',
-    value: 'contact@ferraydigital.com',
-    href: 'mailto:contact@ferraydigital.com',
+    value: 'hello@ferraydigitalgroup.com',
+    href: 'mailto:hello@ferraydigitalgroup.com',
   },
   {
     icon: 'phone',
     title: 'Téléphone',
-    value: '+33 1 23 45 67 89',
-    href: 'tel:+33123456789',
+    value: '(+229) 01 6100 3050',
+    href: 'tel:+2290161003050',
   },
   {
     icon: 'location',
     title: 'Adresse',
-    value: 'Paris, France',
+    value: 'Gbègnigan, Abomey-Calavi, Benin',
     href: '#',
   },
 ]
@@ -223,7 +226,7 @@ const contactInfo = [
                   v-model="form.phone"
                   type="tel"
                   class="input-field"
-                  placeholder="+33 1 23 45 67 89"
+                  placeholder="+229 01 6100 3050"
                 />
               </div>
             </div>
@@ -267,16 +270,16 @@ const contactInfo = [
     </AppSection>
 
     <!-- Map -->
-    <section class="h-96 bg-gray-100">
-      <div class="w-full h-full flex items-center justify-center bg-dark-800">
-        <div class="text-center text-white">
-          <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
-          <p class="text-gray-400">Carte interactive à venir</p>
-        </div>
-      </div>
+    <section class="h-96">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6184.861532138569!2d2.319045!3d6.404362!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024a965e5b22219%3A0x2ec9e99248ddff32!2sFerray%20Digital%20Solutions!5e1!3m2!1sfr!2sbj!4v1772031475443!5m2!1sfr!2sbj" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </section>
   </div>
 </template>
